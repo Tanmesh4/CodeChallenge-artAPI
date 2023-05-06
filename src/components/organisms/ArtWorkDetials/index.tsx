@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import TableContent from "../../molecules/TableContent";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import axios from "axios";
 import ImageCardDetail from "../../molecules/ImageCardDetail";
 import { useParams } from "react-router-dom";
 
+const TableBox = styled(Box)({
+  display: "flex",
+  flexDirection:"column",
+  alignItems:"flex-start",
+  padding:"10px",
+  gap:"10px"
+});
 
 const ArtWorkDetails = () => {
 
@@ -34,9 +41,7 @@ const ArtWorkDetails = () => {
             objectNumber={objectNumber ? objectNumber : '' }
             longTitle={artObjectData?.longTitle}
           />
-        </Box>
-      <Box>
-        <Box>
+        <TableBox data-testid="tablebox-list">
         <TableContent heading={"Title"} content={artObjectData?.longTitle} />
         <TableContent
           heading={"Artist"}
@@ -54,7 +59,7 @@ const ArtWorkDetails = () => {
           heading={"Description"}
           content={artObjectData?.plaqueDescriptionEnglish}
         />
-        </Box>
+        </TableBox>
       </Box>
     </>
   );

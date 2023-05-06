@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import Loading from "../Loading";
 
 interface ITile {
   url: string;
@@ -44,15 +45,15 @@ const ImageConstructor: React.FC<IImageConstructorProps> = ({ width, height, id 
   }, [width, height, id]);
 
   return (
-    <Box sx={{display: "flex"}} data-testid="imageConstructor">
+    <Box sx={{display: "flex", maxWidth:"450px"}} data-testid="imageConstructor">
       {tiles && tiles.length > 0 ? (
         <img
           src={tiles[0].url}
           alt="Rijksmuseum collection"
-          style={{ width, height }}
+          style={{ width, height, borderRadius: "8px"}}
         />
       ) : (
-        <p>Loading...</p>
+        <Loading/>
       )}
     </Box>
   );

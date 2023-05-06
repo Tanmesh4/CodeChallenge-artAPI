@@ -1,17 +1,21 @@
 import { Box, Card, Typography, styled } from "@mui/material";
 import React from "react";
 import ImageConstructor from "../../atom/imageConstructor";
+import theme from "../../../theme/theme";
 
 const RootBox = styled(Box)({
   position: "relative",
-  width: "450px",
-  // "&:hover": {
-  //   backgroundColor: "#E10856",
-  //   color: "white",
-  // },
+  maxWidth: "450px",
+  "&:hover": {
+    cursor: "pointer",
+    opacity: "0.7",
+    //background: "rgba(255, 255, 255, 0.2)",
+    border: `1px solid ${theme.palette.divider}`,
+  },
 });
 
-const ImageBox = styled(Box)({});
+const ImageBox = styled(Box)({
+});
 
 const RightTypoBox = styled(Box)({
   position: "absolute",
@@ -26,6 +30,7 @@ const LeftBottomTypoBox = styled(Box)({
   position: "absolute",
   bottom: "40px",
   left: "24px",
+  width: "346px"
 });
 
 interface IImageCardProps {
@@ -51,10 +56,10 @@ const ImageCard = ({
         <ImageConstructor width={width} height={height} id={id} />
       </ImageBox>
       <RightTypoBox>
-        <Typography variant="subtitle2" color="#0FEFFD" children={rightTypo} />
+        <Typography variant="subtitle2" color={theme.palette.info.main} children={rightTypo} />
       </RightTypoBox>
       <LeftBottomTypoBox>
-        <Typography variant="h3" color="#C4C4C4" children={leftTypo} />
+        <Typography variant="h3" color={theme.palette.text.secondary} children={leftTypo} />
       </LeftBottomTypoBox>
     </RootBox>
   );

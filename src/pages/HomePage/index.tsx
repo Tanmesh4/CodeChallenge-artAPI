@@ -1,9 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
-import ArtWorkText from "../../components/atom/AllArtWorkText";
 import axios from "axios";
 import BasicTemplate from "../../components/template";
 import ArtworkGrid from "../../components/organisms/allArtwork";
+import theme from "../../theme/theme";
+import SearchImage from '../../images/Search.svg'
+import CloseImage from '../../images/close.svg'
 
 const HomePage = () => {
   const [artData, setArtData] = useState<any[]>([]);
@@ -11,6 +13,8 @@ const HomePage = () => {
   const [isSearch, setSearch] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [filteredDataLength, setFilteredDataLength] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
+  const [searchQuery, setSearchQuery] = React.useState("");
   const itemsPerPage = 9;
 
   useEffect(() => {
@@ -43,12 +47,25 @@ const HomePage = () => {
   };
 
   const handleSearchResult = useCallback((event: any) => {
+    if(isButtonDisabled && event.target.value.length > 0) {
+      setIsButtonDisabled(false);
+    } else if (!isButtonDisabled && event.target.value.length === 0) {
+      setIsButtonDisabled(true);
+    }
     setSearchValue(event.target.value);
+    setSearchQuery(event.target.value);
     setSearch(false);
+  }, []);
+
+  const handleClearSearch = useCallback((event: any) => {
+    if(isSearch){
+      setSearchValue("");
+    }
   }, []);
 
   const handleSearch = useCallback(() => {
     setSearch(true);
+    setIsButtonDisabled(true);
     axios
       .get("https://www.rijksmuseum.nl/api/nl/collection", {
         params: {
@@ -65,7 +82,7 @@ const HomePage = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [filteredDataLength, searchValue, artData]);
+  }, [filteredDataLength, searchValue, artData, searchQuery, isButtonDisabled, isSearch]);
 
   return (
     <Box>
@@ -74,9 +91,9 @@ const HomePage = () => {
         handleSearch={handleSearch}
         middleData={
           <Box>
-            <Box>
-              <ArtWorkText
-                artWorkText={
+            <Box sx={{marginBottom:"32px"}}>
+              <Typography variant="h1" color={theme.palette.text.secondary}
+                children={
                   isSearch
                     ? `Found ${filteredDataLength} result for : ${searchValue}`
                     : "All artwork"
@@ -89,6 +106,10 @@ const HomePage = () => {
             />
           </Box>
         }
+        searchImage={!isSearch ? '' : CloseImage}
+        clearSearch = {handleClearSearch}
+        searchQuery= {searchQuery}
+        isButtonDisabled = {isButtonDisabled}
       />
     </Box>
   );

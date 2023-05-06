@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import React from "react";
 
-export interface ImageProps {
+export interface ImageProps{
   src: any;
   alt: any;
   style?: any;

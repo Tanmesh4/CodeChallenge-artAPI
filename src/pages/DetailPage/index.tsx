@@ -4,7 +4,6 @@ import ArtWorkDetails from "../../components/organisms/ArtWorkDetials";
 import { Box } from "@mui/material";
 import TextBackButton from "../../components/molecules/TextBackButton";
 import { useNavigate } from "react-router-dom";
-import ArtWorkText from "../../components/atom/AllArtWorkText";
 import BasicTemplate from "../../components/template";
 
 const DetailsPage = () => {
@@ -12,19 +11,14 @@ const DetailsPage = () => {
   return (
     <Box>
       <BasicTemplate
-        handleSearchResult={undefined}
-        handleSearch={undefined}
         middleData={
-          <Box>
-            <TextBackButton
-              handleBackToList={() => {
-                navigate("/");
-              }}
-            />
-            <ArtWorkDetails />
-          </Box>
-        }
-      />
+        <Box data-testid="details-middleData">
+          <TextBackButton
+            handleBackToList={() => {
+              navigate("/");
+            } } />
+          <ArtWorkDetails />
+        </Box>}/>
     </Box>
   );
 };

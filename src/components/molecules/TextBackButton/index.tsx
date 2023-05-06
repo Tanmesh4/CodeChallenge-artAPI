@@ -2,6 +2,7 @@ import { Box, Button, Typography, styled } from '@mui/material'
 import React from 'react'
 import ImageComp from '../../atom/Image'
 import BackButtonImage from '../../../images/Chevron-left.svg'
+import theme from '../../../theme/theme';
 
 interface ITextBackButton {
   handleBackToList: any;
@@ -22,7 +23,7 @@ const TextBackButton = ({handleBackToList}:ITextBackButton) => {
     <RootBox data-id="molecule-backbutton">
       <RootButton onClick={handleBackToList}>
       <ImageComp src={BackButtonImage} alt="BackButton"/>
-      <Typography variant='h5' color="#E10856" children="Back to the List"/>
+      <Typography variant='h5' color={theme.palette.primary.main} children="Back to the List"/>
       </RootButton>
     </RootBox>
   )

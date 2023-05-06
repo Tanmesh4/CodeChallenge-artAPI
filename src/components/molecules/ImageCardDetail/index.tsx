@@ -10,9 +10,8 @@ const RootBox = styled(Box)({
   position: "absolute",
   left: "0px",
   right: "0px",
-  //   top: "56px",
-  //   bottom: "512px",
   borderRadius: "8px",
+  maxWidth: "450px",
 });
 
 const TextBox = styled(Box)({
@@ -21,12 +20,20 @@ const TextBox = styled(Box)({
   color: "white",
 });
 
+const TextTypo = styled(Typography)({
+  position: "absolute",
+  width: "1043px",
+  height: "64px",
+  left: "33px",
+  //top: "814px",
+});
+
 const ImageCardDetail = ({ objectNumber, longTitle }: IImageCardDetail) => {
   return (
     <RootBox data-testid="molecule-CardDetail">
       <ImageConstructor width={1408} height={850} id={objectNumber} />
       <TextBox>
-        <Typography variant="h1" children={longTitle} />
+        <TextTypo variant="h1" children={longTitle} />
       </TextBox>
     </RootBox>
   );

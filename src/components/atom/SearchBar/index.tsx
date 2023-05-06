@@ -1,37 +1,41 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField, { StandardTextFieldProps } from "@mui/material/TextField";
-import { styled } from "@mui/material";
+import { Button, styled } from "@mui/material";
+import ImageComp from "../Image";
 
 interface ITextFieldProps extends StandardTextFieldProps {
   handleSearchResult: () => void;
+  searchImage: any;
+  clearSearch: any;
+  searchQuery: string;
 }
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
-  //width: "412px",
-  //height: "32px",
   color: "rgba(255, 255, 255, 0.2)",
   "& .MuiInput-input": {
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "24px",
-    lineHeight: "32px",
-    color: "white",
+    ...theme.typography.body1,
+    color: theme.palette.primary.contrastText,
   },
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
-  //backgroundColor: "transparent",
-  padding: "8px 24px",
+  display: "flex",
+  alignItems: "center",
+  padding: "2px 24px",
   width: "460px",
- // height: "48px",
-  //background: "rgba(31, 31, 31, 0.4)",
   border: "1px solid rgba(255, 255, 255, 0.15)",
   borderRadius: "80px",
+  [theme.breakpoints.down("md")]: {
+    width: "400px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "350px",
+    padding: "2px 16px",
+  },
 }));
 
-const SearchFieldComponent = ({ handleSearchResult }: ITextFieldProps) => {
+const SearchFieldComponent = ({ handleSearchResult, searchImage, clearSearch, searchQuery }: ITextFieldProps) => {
   return (
     <StyledBox data-testid="searchfield-atom">
       <StyledTextField
@@ -40,7 +44,9 @@ const SearchFieldComponent = ({ handleSearchResult }: ITextFieldProps) => {
         placeholder="Please type in your search"
         onChange={handleSearchResult}
         fullWidth
+        value={searchQuery}
       />
+      <ImageComp src={searchImage} onClick={clearSearch} alt=""/>
     </StyledBox>
   );
 };
