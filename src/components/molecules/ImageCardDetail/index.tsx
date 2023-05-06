@@ -24,7 +24,7 @@ const TextBox = styled(Box)({
 const ImageCardDetail = ({ objectNumber, longTitle }: IImageCardDetail) => {
   return (
     <RootBox data-testid="molecule-CardDetail">
-      <ImageConstructor width={300} height={300} id={objectNumber} />
+      <ImageConstructor width={1408} height={850} id={objectNumber} />
       <TextBox>
         <Typography variant="h1" children={longTitle} />
       </TextBox>
