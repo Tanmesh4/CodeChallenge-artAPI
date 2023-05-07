@@ -37,7 +37,7 @@ const ImageConstructor: React.FC<IImageConstructorProps> = ({ width, height, id 
             res = distance;
           }
         }
-        console.log("my tiles: ", data.levels[closestResolution]);
+        //console.log("my tiles: ", data.levels[closestResolution]);
         setTiles(data.levels[closestResolution].tiles);
   
         if (!canvasRef.current) return;
@@ -51,7 +51,7 @@ const ImageConstructor: React.FC<IImageConstructorProps> = ({ width, height, id 
         const noOfTiles = data.levels[closestResolution].tiles.length;
         const tilesWidth = Math.round(width / Math.sqrt(noOfTiles));
         const tileHeight = Math.round(height / Math.sqrt(noOfTiles));
-        console.log("tile data is: ", noOfTiles, tilesWidth, tileHeight);
+        //console.log("tile data is: ", noOfTiles, tilesWidth, tileHeight);
         image.onload = () => {
           data.levels[closestResolution].tiles.forEach((tile: { x: number; y: number; url: string; }) => {
             const tileImage = new Image();

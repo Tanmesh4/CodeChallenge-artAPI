@@ -21,9 +21,12 @@ const ArtWorkDetails = () => {
     { heading: "Artist", content: artObjectData?.principalOrFirstMaker },
     { heading: "Object Type", content: artObjectData?.objectTypes },
     { heading: "Measurements", content: artObjectData?.subTitle },
-    { heading: "Description", content: artObjectData?.plaqueDescriptionEnglish },
+    {
+      heading: "Description",
+      content: artObjectData?.plaqueDescriptionEnglish,
+    },
   ];
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +50,12 @@ const ArtWorkDetails = () => {
         />
         <TableBox data-testid="tablebox-list">
           {tableData.map((data, index) => (
-            <TableContent key={index} heading={data.heading} content={data.content} isLast={index === (tableData.length-1)} />
+            <TableContent
+              key={index}
+              heading={data.heading}
+              content={data.content}
+              isLast={index === tableData.length - 1}
+            />
           ))}
         </TableBox>
       </Box>

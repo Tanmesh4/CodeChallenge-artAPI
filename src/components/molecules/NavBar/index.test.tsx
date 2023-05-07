@@ -4,9 +4,6 @@ import Navbar from ".";
 describe("Navbar", () => {
   const handleSearchResult = jest.fn();
   const handleSearch = jest.fn();
-  const searchImage = jest.fn();
-  const clearSearch = jest.fn();
-  const searchQuery = "";
   const isButtonDisabled = false;
 
   it("renders logo and search bar", () => {
@@ -14,11 +11,8 @@ describe("Navbar", () => {
       <Navbar
         handleSearchResult={handleSearchResult}
         handleSearch={handleSearch}
-        searchImage={searchImage}
-        clearSearch={clearSearch}
-        searchQuery={searchQuery}
         isButtonDisabled={isButtonDisabled}
-      />
+        options={undefined} handleOptionSelected={undefined}      />
     );
     expect(getByTestId("molecule-navbar")).toBeInTheDocument();
     expect(getByTestId("molecule-logotext")).toBeInTheDocument();
@@ -31,11 +25,8 @@ describe("Navbar", () => {
       <Navbar
         handleSearchResult={handleSearchResult}
         handleSearch={handleSearch}
-        searchImage={searchImage}
-        clearSearch={clearSearch}
-        searchQuery={searchQuery}
         isButtonDisabled={isButtonDisabled}
-      />
+        options={undefined} handleOptionSelected={undefined}      />
     );
     const searchButton = getByTestId("button-atom");
     fireEvent.click(searchButton);

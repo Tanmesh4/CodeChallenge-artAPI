@@ -1,14 +1,13 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField, { StandardTextFieldProps } from "@mui/material/TextField";
-import { Button, styled } from "@mui/material";
-import ImageComp from "../Image";
+import { Autocomplete, Button, styled } from "@mui/material";
+import theme from "../../../theme/theme";
 
 interface ITextFieldProps extends StandardTextFieldProps {
   handleSearchResult: () => void;
-  searchImage: string;
-  clearSearch: any;
-  searchQuery: string;
+  handleOptionSelected: (event?: any, value?: any) => void;
+  options: any;
 }
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -37,25 +36,32 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const SearchFieldComponent = ({
   handleSearchResult,
-  searchImage,
-  clearSearch,
-  searchQuery,
+  handleOptionSelected,
+  options
 }: ITextFieldProps) => {
   return (
     <StyledBox data-testid="searchfield-atom">
-      <StyledTextField
-        id="standard-basic"
-        variant="standard"
-        placeholder="Please type in your search"
-        onChange={handleSearchResult}
-        fullWidth
-        value={searchQuery}
-      />
-      <ImageComp
-        src={searchImage}
-        onClick={clearSearch}
-        alt=""
-        sx={{ cursor: searchImage ? "auto" : "pointer" }}
+      <Autocomplete
+        id="search-input"
+        freeSolo
+        options={options}
+        onChange={(event, value) => handleOptionSelected(event,value)}
+        renderInput={(params) => (
+          <StyledTextField
+            {...params}
+            id="standard-basic"
+            variant="standard"
+            placeholder="Please type in your search"
+            fullWidth
+            onChange={handleSearchResult}
+          />
+        )}
+        sx={{ 
+          width: "100%",
+          ".MuiAutocomplete-clearIndicator": {
+            color: theme.palette.primary.main,
+          },
+        }}
       />
     </StyledBox>
   );

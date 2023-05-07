@@ -7,10 +7,9 @@ import ButtonComponent from "../../atom/Button";
 interface INavBarProp {
   handleSearchResult: () => {};
   handleSearch: () => void;
-  searchImage: any;
-  clearSearch: any;
-  searchQuery: any;
+  handleOptionSelected: any;
   isButtonDisabled: any;
+  options: any;
 }
 
 const RootBox = styled(Box)(({ theme }) => ({
@@ -50,15 +49,28 @@ const SearchBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Navbar = ({ handleSearchResult, handleSearch, searchImage, clearSearch, searchQuery, isButtonDisabled}: INavBarProp) => {
+const Navbar = ({
+  handleSearchResult,
+  handleSearch,
+  isButtonDisabled,
+  handleOptionSelected,
+  options,
+}: INavBarProp) => {
   return (
     <RootBox data-testid="molecule-navbar">
       <Box>
         <Logotext />
       </Box>
       <SearchBox>
-        <SearchFieldComponent handleSearchResult={handleSearchResult} searchImage={searchImage} clearSearch={clearSearch} searchQuery={searchQuery} />
-        <ButtonComponent children={"Search"} handleSearch={handleSearch} isButtonDisabled={isButtonDisabled} />
+        <SearchFieldComponent
+          handleSearchResult={handleSearchResult}
+          options={options} 
+          handleOptionSelected={handleOptionSelected}        />
+        <ButtonComponent
+          children={"Search"}
+          handleSearch={handleSearch}
+          isButtonDisabled={isButtonDisabled}
+        />
       </SearchBox>
     </RootBox>
   );

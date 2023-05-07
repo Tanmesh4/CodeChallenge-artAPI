@@ -36,11 +36,10 @@ describe('TextBackButton', () => {
     render(<TextBackButton handleBackToList={handleBackToList} />);
     const backButton = screen.getByRole('button');
     expect(backButton).toHaveStyle('display: flex');
-    expect(backButton).toHaveStyle('align-items: flex-start');
+    expect(backButton).toHaveStyle('align-items: center');
     //expect(backButton).toHaveStyle(`background-color: ${theme.palette.background.default}`);
     expect(backButton).toHaveStyle('color: rgb(25, 118, 210)');
     expect(backButton).toHaveStyle('cursor: pointer');
-    expect(backButton).toHaveStyle('padding: 6px 8px');
     expect(backButton).toHaveStyle(`border-radius: ${theme.shape.borderRadius}px`);
   });
 

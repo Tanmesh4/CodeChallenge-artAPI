@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import SearchFieldComponent from ".";
 
-
 describe("SearchFieldComponent", () => {
   const handleSearchResult = jest.fn();
   const clearSearch = jest.fn();
@@ -9,20 +8,24 @@ describe("SearchFieldComponent", () => {
   test("should render input field", () => {
     render(
       <SearchFieldComponent
-            handleSearchResult={handleSearchResult}
-            clearSearch={clearSearch}
-            searchQuery="" searchImage={""}      />
+        handleSearchResult={handleSearchResult}
+        options={undefined} handleOptionSelected={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     );
-    const inputField = screen.getByPlaceholderText(/Please type in your search/i);
+    const inputField = screen.getByPlaceholderText(
+      /Please type in your search/i
+    );
     expect(inputField).toBeInTheDocument();
   });
 
   test("should have correct data-testid attribute value", () => {
     render(
       <SearchFieldComponent
-            handleSearchResult={handleSearchResult}
-            clearSearch={clearSearch}
-            searchQuery="" searchImage={""}      />
+        handleSearchResult={handleSearchResult}
+        options={undefined} handleOptionSelected={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     );
     const searchField = screen.getByTestId("searchfield-atom");
     expect(searchField).toBeInTheDocument();
@@ -31,11 +34,14 @@ describe("SearchFieldComponent", () => {
   test("should call handleSearchResult on input change", () => {
     render(
       <SearchFieldComponent
-            handleSearchResult={handleSearchResult}
-            clearSearch={clearSearch}
-            searchQuery="" searchImage={''}      />
+        handleSearchResult={handleSearchResult}
+        options={undefined} handleOptionSelected={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     );
-    const inputField = screen.getByPlaceholderText(/Please type in your search/i);
+    const inputField = screen.getByPlaceholderText(
+      /Please type in your search/i
+    );
     fireEvent.change(inputField, { target: { value: "test" } });
     expect(handleSearchResult).toHaveBeenCalled();
   });
@@ -43,9 +49,10 @@ describe("SearchFieldComponent", () => {
   test("should call clearSearch on Image click", () => {
     render(
       <SearchFieldComponent
-            handleSearchResult={handleSearchResult}
-            clearSearch={clearSearch}
-            searchQuery="" searchImage={''}      />
+        handleSearchResult={handleSearchResult}
+        options={undefined} handleOptionSelected={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     );
     const image = screen.getByAltText("");
     fireEvent.click(image);
@@ -55,11 +62,14 @@ describe("SearchFieldComponent", () => {
   test("should display searchQuery prop value in input field", () => {
     render(
       <SearchFieldComponent
-            handleSearchResult={handleSearchResult}
-            clearSearch={clearSearch}
-            searchQuery="test" searchImage={''}      />
+        handleSearchResult={handleSearchResult}
+        options={undefined} handleOptionSelected={function (): void {
+          throw new Error("Function not implemented.");
+        } }      />
     );
-    const inputField = screen.getByPlaceholderText(/Please type in your search/i);
+    const inputField = screen.getByPlaceholderText(
+      /Please type in your search/i
+    );
     expect(inputField).toHaveValue("test");
   });
 });

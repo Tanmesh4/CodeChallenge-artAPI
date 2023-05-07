@@ -4,8 +4,6 @@ import axios from "axios";
 import BasicTemplate from "../../components/template";
 import ArtworkGrid from "../../components/organisms/allArtwork";
 import theme from "../../theme/theme";
-import SearchImage from '../../images/Search.svg'
-import CloseImage from '../../images/close.svg'
 
 const HomePage = () => {
   const [artData, setArtData] = useState<any[]>([]);
@@ -14,7 +12,6 @@ const HomePage = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const [filteredDataLength, setFilteredDataLength] = useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
-  const [searchQuery, setSearchQuery] = React.useState("");
   const itemsPerPage = 9;
 
   useEffect(() => {
@@ -31,6 +28,7 @@ const HomePage = () => {
             },
           }
         );
+        //console.log("data is options: ", response.data.artObjects);
         setArtData(response.data.artObjects);
       } catch (error) {
         console.log(error);
@@ -47,17 +45,29 @@ const HomePage = () => {
   };
 
   const handleSearchResult = useCallback((event: any) => {
-    if(isButtonDisabled && event.target.value.length > 0) {
+    console.log("in handle search: ", isButtonDisabled);
+    if(!event.target.value) {
+      console.log("!isButtonDisabled && !event.target.value");
+      setIsButtonDisabled(true);
+    }else if (isButtonDisabled && event.target.value.length > 0) {
+      console.log("isButtonDisabled && event.target.value.length > 0");
       setIsButtonDisabled(false);
-    } 
+    }
     setSearchValue(event.target.value);
-    setSearchQuery(event.target.value);
     setSearch(false);
   }, []);
 
-  const handleClearSearch = useCallback((event: any) => {
-    setSearchQuery("");
-    setSearch(true);
+  const handleOptionSelected = useCallback((event: any, value: any) => {
+    console.log("in option selected: ");
+    setSearchValue(value);
+    if(!isButtonDisabled && !value) {
+      console.log("!isButtonDisabled && !value: ");
+      setIsButtonDisabled(true);
+    }else if (isButtonDisabled) {
+      console.log("isButtonDisabled");
+      setIsButtonDisabled(false);
+    }
+    setSearch(false);
   }, []);
 
   const handleSearch = useCallback(() => {
@@ -79,7 +89,7 @@ const HomePage = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [filteredDataLength, searchValue, artData, searchQuery, isButtonDisabled]);
+  }, [filteredDataLength, searchValue, artData, isButtonDisabled]);
 
   return (
     <Box>
@@ -88,8 +98,10 @@ const HomePage = () => {
         handleSearch={handleSearch}
         middleData={
           <Box>
-            <Box sx={{marginBottom:"32px"}}>
-              <Typography variant="h1" color={theme.palette.text.secondary}
+            <Box sx={{ marginBottom: "32px" }}>
+              <Typography
+                variant="h1"
+                color={theme.palette.text.secondary}
                 children={
                   isSearch
                     ? `Found ${filteredDataLength} result for : ${searchValue}`
@@ -103,10 +115,9 @@ const HomePage = () => {
             />
           </Box>
         }
-        searchImage={!isSearch ? '' : CloseImage}
-        clearSearch = {handleClearSearch}
-        searchQuery= {searchQuery}
-        isButtonDisabled = {isButtonDisabled}
+        isButtonDisabled={isButtonDisabled}
+        options={["paintings", "sculptures", "drawings"]}
+        handleOptionSelected={handleOptionSelected}
       />
     </Box>
   );
