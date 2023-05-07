@@ -49,18 +49,15 @@ const HomePage = () => {
   const handleSearchResult = useCallback((event: any) => {
     if(isButtonDisabled && event.target.value.length > 0) {
       setIsButtonDisabled(false);
-    } else if (!isButtonDisabled && event.target.value.length === 0) {
-      setIsButtonDisabled(true);
-    }
+    } 
     setSearchValue(event.target.value);
     setSearchQuery(event.target.value);
     setSearch(false);
   }, []);
 
   const handleClearSearch = useCallback((event: any) => {
-    if(isSearch){
-      setSearchValue("");
-    }
+    setSearchQuery("");
+    setSearch(true);
   }, []);
 
   const handleSearch = useCallback(() => {
@@ -82,7 +79,7 @@ const HomePage = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [filteredDataLength, searchValue, artData, searchQuery, isButtonDisabled, isSearch]);
+  }, [filteredDataLength, searchValue, artData, searchQuery, isButtonDisabled]);
 
   return (
     <Box>

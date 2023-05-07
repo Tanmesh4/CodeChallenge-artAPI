@@ -35,7 +35,12 @@ const StyledBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SearchFieldComponent = ({ handleSearchResult, searchImage, clearSearch, searchQuery }: ITextFieldProps) => {
+const SearchFieldComponent = ({
+  handleSearchResult,
+  searchImage,
+  clearSearch,
+  searchQuery,
+}: ITextFieldProps) => {
   return (
     <StyledBox data-testid="searchfield-atom">
       <StyledTextField
@@ -46,7 +51,12 @@ const SearchFieldComponent = ({ handleSearchResult, searchImage, clearSearch, se
         fullWidth
         value={searchQuery}
       />
-      <ImageComp src={searchImage} onClick={clearSearch} alt=""/>
+      <ImageComp
+        src={searchImage}
+        onClick={clearSearch}
+        alt=""
+        sx={{ cursor: searchImage ? "auto" : "pointer" }}
+      />
     </StyledBox>
   );
 };

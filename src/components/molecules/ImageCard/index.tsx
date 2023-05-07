@@ -13,6 +13,15 @@ const RootBox = styled(Box)({
     cursor: "pointer",
     opacity: "0.7",
     border: `3px solid ${theme.palette.divider}`,
+    "&::before": {
+      ...theme.typography.h5,
+      content: "'Have a look'",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      color: theme.palette.primary.main
+    },
   },
 });
 
@@ -22,7 +31,7 @@ const RightTypoBox = styled(Box)({
   position: "absolute",
   top: "0px",
   right: "0px",
-  borderRadius: "0px 8px",
+  borderRadius: "0px 0px 0px 8px",
   padding: "4px 8px",
   background: "rgba(29, 29, 29, 0.5)",
 });

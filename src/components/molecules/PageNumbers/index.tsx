@@ -32,7 +32,7 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
     padding: "16px",
     gap: "10px",
   },
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     "& .MuiPaginationItem-root": {
       width: "40px",
       height: "40px",
@@ -40,7 +40,7 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
       gap: "5px",
     },
   },
-  [theme.breakpoints.down("xs")]: {
+  [theme.breakpoints.down("sm")]: {
     "& .MuiPaginationItem-root": {
       width: "32px",
       height: "32px",

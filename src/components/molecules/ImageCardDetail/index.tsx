@@ -29,7 +29,7 @@ const TextBox = styled(Box)({
   width: "1043px",
   left: "33px",
   bottom: "28px",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     width: "80%",
     left: "10%",
   },
