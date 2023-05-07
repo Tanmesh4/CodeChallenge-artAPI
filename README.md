@@ -16,3 +16,19 @@
 ❯ Various problem-solving paths are possible to solve this challenge.
 
 ❯ The main goal is to evaluate your ability to handle the challenge and, with the provided information, structure a project and implement a solution.
+
+# My Task
+## Basic delivery:
+❯ Working responsive application. Note: the team didn’t create a mobile and tablet version, but you should implement those. To make your job easier, you should create fluid components.
+
+❯ Pixel-perfect code representing the delivered layout.
+
+❯ README.md with instructions to run the project.
+
+## Extras:
+❯ The designer didn’t deliver animations, transitions, etc., but you know that’s a
+part of a good UX. Feel free to propose, but it’s not mandatory.
+
+❯ Deliver your code with tests.
+
+❯ Implement some other feature you think could add value to the project.
