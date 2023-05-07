@@ -6,7 +6,7 @@ import ImageComp from "../Image";
 
 interface ITextFieldProps extends StandardTextFieldProps {
   handleSearchResult: () => void;
-  searchImage: any;
+  searchImage: string;
   clearSearch: any;
   searchQuery: string;
 }

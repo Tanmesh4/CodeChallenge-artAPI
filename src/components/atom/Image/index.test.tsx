@@ -1,26 +1,25 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import ImageComp, { ImageProps } from '.';
-import CardImage from '../../../images/Vector.svg';
+import { render, screen, fireEvent } from "@testing-library/react";
+import ImageComp from ".";
 
-describe('ImageComp', () => {
-  const mockOnClick = jest.fn();
-  const imageProps: ImageProps = {
-    src: {CardImage},
-    alt: 'Example Image',
-    onClick: mockOnClick,
-  };
+describe("ImageComp", () => {
+  const testSrc = "testSrc";
+  const testAlt = "testAlt";
 
-  it('renders an image with the correct props', () => {
-    render(<ImageComp {...imageProps} />);
-    const imageElement = screen.getByAltText(imageProps.alt);
+  test("renders an image with src and alt attributes", () => {
+    render(<ImageComp src={testSrc} alt={testAlt} />);
+
+    const imageElement = screen.getByAltText(testAlt);
     expect(imageElement).toBeInTheDocument();
-    expect(imageElement).toHaveAttribute('src', imageProps.src);
+    expect(imageElement).toHaveAttribute("src", testSrc);
   });
 
-  it('calls the onClick function when the image is clicked', () => {
-    render(<ImageComp {...imageProps} />);
-    const imageElement = screen.getByAltText(imageProps.alt);
+  test("calls onClick prop when the image is clicked", () => {
+    const onClickMock = jest.fn();
+    render(<ImageComp src={testSrc} alt={testAlt} onClick={onClickMock} />);
+
+    const imageElement = screen.getByAltText(testAlt);
     fireEvent.click(imageElement);
-    expect(mockOnClick).toHaveBeenCalled();
+
+    expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 });

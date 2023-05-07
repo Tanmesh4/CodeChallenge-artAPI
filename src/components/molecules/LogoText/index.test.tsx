@@ -1,22 +1,22 @@
-import { render } from '@testing-library/react';
-import Logotext from '.';
-import Logo from '../../../images/Vector.svg';
+import { render, screen } from "@testing-library/react";
+import Logotext from "./index";
+import theme from "../../../theme/theme";
+import "jest-styled-components";
 
+describe("Logotext", () => {
+  it("should render logo and title", () => {
+    render(<Logotext />);
+    const logo = screen.getByRole("img");
+    const title = screen.getByText(/Art API/i);
 
-test('renders Logotext component without crashing', () => {
-  render(<Logotext />);
-});
-
-test('renders logo and text in Logotext component', () => {
-    const { getByAltText, getByText } = render(<Logotext />);
-    const logo = getByAltText('Logo');
-    const text = getByText('Art API');
     expect(logo).toBeInTheDocument();
-    expect(text).toBeInTheDocument();
+    expect(title).toBeInTheDocument();
   });
 
-  test('renders correct image in Logotext component', () => {
-    const { getByAltText } = render(<Logotext />);
-    const logo = getByAltText('Logo');
-    expect(logo).toContain(Logo);
-  })
+  it("should render with correct alt attribute for logo", () => {
+    render(<Logotext />);
+    const logo = screen.getByRole("img");
+
+    expect(logo).toHaveAttribute("alt", "Logo");
+  });
+});

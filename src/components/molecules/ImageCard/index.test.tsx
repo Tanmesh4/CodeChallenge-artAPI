@@ -1,50 +1,53 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import ImageCard from ".";
+import { fireEvent, render } from "@testing-library/react";
+import ImageCard from "./index";
 
 describe("ImageCard component", () => {
-  const handleImageClick = jest.fn();
+  const props = {
+    leftTypo: "Left Text",
+    rightTypo: "Right Text",
+    width: 200,
+    height: 200,
+    id: "1",
+    imageClick: jest.fn(),
+  };
 
-  beforeEach(() => {
-    handleImageClick.mockClear();
+  it("should render with props", () => {
+    const { getByTestId } = render(<ImageCard {...props} />);
+    const imageCardElement = getByTestId("molecule-imageCard");
+
+    expect(imageCardElement).toBeInTheDocument();
   });
 
-  test("renders ImageCard component with left and right typography and an image", () => {
-    render(
-      <ImageCard
-        leftTypo="Sample left typography"
-        rightTypo="Sample right typography"
-        width={100}
-        height={100}
-        id="1234"
-        imageClick={handleImageClick}
-      />
-    );
+  it("should have a right typography box with the right text", () => {
+    const { getByTestId } = render(<ImageCard {...props} />);
+    const rightTypoBox = getByTestId("right-typo-box");
 
-    const leftTypoElement = screen.getByText("Sample left typography");
-    const rightTypoElement = screen.getByText("Sample right typography");
-    const imageElement = screen.getByAltText("image-1234");
-
-    expect(leftTypoElement).toBeInTheDocument();
-    expect(rightTypoElement).toBeInTheDocument();
-    expect(imageElement).toBeInTheDocument();
+    expect(rightTypoBox).toHaveTextContent("Right Text");
   });
 
-  test("calls imageClick function when image is clicked", () => {
-    render(
-      <ImageCard
-        leftTypo="Sample left typography"
-        rightTypo="Sample right typography"
-        width={100}
-        height={100}
-        id="1234"
-        imageClick={handleImageClick}
-      />
-    );
+  it("should have a left bottom typography box with the left text", () => {
+    const { getByTestId } = render(<ImageCard {...props} />);
+    const leftBottomTypoBox = getByTestId("left-bottom-typo-box");
 
-    const imageElement = screen.getByAltText("image-1234");
+    expect(leftBottomTypoBox).toHaveTextContent("Left Text");
+  });
 
-    fireEvent.click(imageElement);
+  it("should trigger imageClick when the image is clicked", () => {
+    const { getByTestId } = render(<ImageCard {...props} />);
+    const imageCardElement = getByTestId("molecule-imageCard");
 
-    expect(handleImageClick).toHaveBeenCalledTimes(1);
+    fireEvent.click(imageCardElement);
+
+    expect(props.imageClick).toHaveBeenCalled();
+  });
+
+  it("should have a border and lower opacity on hover", () => {
+    const { getByTestId } = render(<ImageCard {...props} />);
+    const imageCardElement = getByTestId("molecule-imageCard");
+
+    fireEvent.mouseEnter(imageCardElement);
+
+    expect(imageCardElement).toHaveStyle("border: 1px solid #E0E0E0");
+    expect(imageCardElement).toHaveStyle("opacity: 0.7");
   });
 });

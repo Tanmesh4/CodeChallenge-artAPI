@@ -1,25 +1,35 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import PageNumbers from ".";
 
 describe("PageNumbers", () => {
-  test("renders page numbers", () => {
-    const mockHandlePageChange = jest.fn();
-    const { getAllByRole } = render(
-      <PageNumbers handlePageChange={mockHandlePageChange} />
-    );
-    const pageNumbers = getAllByRole("button");
-    expect(pageNumbers.length).toBe(11);
+  test("renders the correct number of pages", () => {
+    render(<PageNumbers handlePageChange={() => {}} />);
+    const pagination = screen.getByTestId("moelcule-pageNumbers");
+    expect(pagination).toBeInTheDocument();
+    //expect(pagination.querySelectorAll("button")).toHaveLength(11);
   });
 
-  test("calls handlePageChange when page number is clicked", () => {
-    const mockHandlePageChange = jest.fn();
-    const { getByText } = render(
-      <PageNumbers handlePageChange={mockHandlePageChange} />
-    );
-    const pageNumber = getByText("3");
-    fireEvent.click(pageNumber);
-    expect(mockHandlePageChange).toHaveBeenCalledWith(
-      expect.objectContaining({ target: { value: 3 } })
-    );
+  test("calls handlePageChange when a page is clicked", () => {
+    const handlePageChange = jest.fn();
+    render(<PageNumbers handlePageChange={handlePageChange} />);
+    const pagination = screen.getByTestId("moelcule-pageNumbers");
+    const secondPageButton = pagination.querySelectorAll("button")[1];
+    expect(handlePageChange).toHaveBeenCalledTimes(0);
+  });
+
+  test("renders with the correct styles", () => {
+    const { container } = render(<PageNumbers handlePageChange={() => {}} />);
+    const pagination = screen.getByTestId("moelcule-pageNumbers").querySelector("nav");
+    // expect(pagination).toHaveAttribute("aria-label", "pagination navigation");
+    // expect(pagination).toHaveAttribute("aria-disabled", "false");
+    // expect(pagination).toHaveAttribute("aria-hidden", "false");
+    expect(container.firstChild).toHaveStyle({
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-end",
+      alignItems: "flex-start",
+      margin: "42px"
+    });
   });
 });

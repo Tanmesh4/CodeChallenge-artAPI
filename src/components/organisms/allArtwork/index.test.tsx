@@ -1,90 +1,61 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 import ArtworkGrid from ".";
-import ImageCard from "../../molecules/ImageCard";
-import PageNumbers from "../../molecules/PageNumbers";
-import TableContent from "../../molecules/TableContent";
-import TextBackButton from "../../molecules/TextBackButton";
 
 describe("ArtworkGrid component", () => {
-  const artData = [
+  const mockArtData = [
     {
       id: 1,
-      objectNumber: "12345",
-      title: "The Starry Night",
-      principalOrFirstMaker: "Vincent van Gogh",
+      objectNumber: "1",
+      title: "Title 1",
+      principalOrFirstMaker: "Maker 1",
     },
     {
       id: 2,
-      objectNumber: "67890",
-      title: "The Persistence of Memory",
-      principalOrFirstMaker: "Salvador Dali",
+      objectNumber: "2",
+      title: "Title 2",
+      principalOrFirstMaker: "Maker 2",
     },
   ];
 
-  it("renders a loading message when there is no art data", () => {
-    render(<ArtworkGrid artData={[]} handlePageChange={() => {}} />, {
-      wrapper: MemoryRouter,
-    });
-
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+  it("should render loading component when artData is empty", () => {
+    render(<ArtworkGrid artData={[]} handlePageChange={() => {}} />);
+    const loadingElement = screen.getByTestId("loading");
+    expect(loadingElement).toBeInTheDocument();
   });
 
-  it("renders the ImageCard component with correct data", () => {
-    render(<ArtworkGrid artData={artData} handlePageChange={() => {}} />, {
-      wrapper: MemoryRouter,
-    });
-
-    expect(screen.getByText("The Starry Night")).toBeInTheDocument();
-    expect(screen.getByText("Vincent van Gogh")).toBeInTheDocument();
-    expect(screen.getByText("The Persistence of Memory")).toBeInTheDocument();
-    expect(screen.getByText("Salvador Dali")).toBeInTheDocument();
+  it("should render art cards when artData is not empty", () => {
+    render(<ArtworkGrid artData={mockArtData} handlePageChange={() => {}} />);
+    const innerGridElements = screen.getAllByTestId("innerGrid");
+    expect(innerGridElements.length).toBe(mockArtData.length);
+    expect(screen.getByText("Title 1")).toBeInTheDocument();
+    expect(screen.getByText("Title 2")).toBeInTheDocument();
+    expect(screen.getByText("Maker 1")).toBeInTheDocument();
+    expect(screen.getByText("Maker 2")).toBeInTheDocument();
   });
 
-  it("navigates to artwork details page when an image is clicked", () => {
-    const navigate = jest.fn();
-    render(<ArtworkGrid artData={artData} handlePageChange={() => {}} />, {
-      wrapper: MemoryRouter,
-    });
-
-    userEvent.click(screen.getByAltText("The Starry Night"));
-
-    expect(navigate).toHaveBeenCalledWith("/artwork/12345");
-  });
-
-  it("renders the PageNumbers component with correct props", () => {
+  it("should navigate to correct artwork page when clicking on image card", () => {
     const handlePageChange = jest.fn();
-    render(<PageNumbers handlePageChange={handlePageChange} />, {
-      wrapper: MemoryRouter,
-    });
-
-    expect(screen.getByTestId("moelcule-pageNumbers")).toBeInTheDocument();
-    expect(screen.getByText("1")).toBeInTheDocument();
-    expect(screen.getByText("11")).toBeInTheDocument();
-  });
-});
-
-describe("ImageCard component", () => {
-  const handleClick = jest.fn();
-
-  it("renders with correct props", () => {
     render(
-      <ImageCard
-        rightTypo="Vincent van Gogh"
-        leftTypo="The Starry Night"
-        width={450}
-        height={364}
-        id="12345"
-        imageClick={handleClick}
-      />
+      <MemoryRouter>
+        <ArtworkGrid artData={mockArtData} handlePageChange={handlePageChange} />
+        <Route path="/artwork/:id">
+          <div data-testid="artwork-page"></div>
+        </Route>
+      </MemoryRouter>
     );
+    const imageCardElements = screen.getAllByTestId("image-card");
+    userEvent.click(imageCardElements[0]);
+    expect(screen.getByTestId("artwork-page")).toBeInTheDocument();
+    expect(screen.getByTestId("artwork-page")).toHaveTextContent("Artwork details for 1");
+  });
 
-    expect(screen.getByText("Vincent van Gogh")).toBeInTheDocument();
-    expect(screen.getByText("The Starry Night")).toBeInTheDocument();
-    expect(screen.getByTestId("image")).toHaveAttribute("src");
-    expect(screen.getByTestId("image")).toHaveAttribute("alt");
-    expect(handleClick).not.toHaveBeenCalled();
+  it("should call handlePageChange when page number is clicked", () => {
+    const handlePageChange = jest.fn();
+    render(<ArtworkGrid artData={mockArtData} handlePageChange={handlePageChange} />);
+    const pageNumberElement = screen.getByTestId("moelcule-pageNumbers");
+    userEvent.click(pageNumberElement);
+    expect(handlePageChange).toHaveBeenCalled();
   });
 });

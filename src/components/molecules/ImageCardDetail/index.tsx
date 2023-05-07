@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, styled } from "@mui/material";
-import ImageConstructor from "../../atom/imageConstructor";
+import ImageConstructor from "../../atom/imageConstrtuctor";
 
 interface IImageCardDetail {
   objectNumber: string;

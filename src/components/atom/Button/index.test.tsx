@@ -1,15 +1,39 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import ButtonComponent from '.';
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import ButtonComponent from ".";
 
-describe('ButtonComponent', () => {
-  it('renders a button with text and fires a callback when clicked', () => {
-    const mockHandleSearch = jest.fn();
-    const buttonText = 'Click me';
-    render(<ButtonComponent handleSearch={mockHandleSearch} isButtonDisabled={false}>{buttonText}</ButtonComponent>);
-    const buttonElement = screen.getByTestId('button-atom');
+describe("ButtonComponent", () => {
+  test("renders button with text", () => {
+    const handleSearch = jest.fn();
+    const { getByText } = render(
+      <ButtonComponent handleSearch={handleSearch} isButtonDisabled={false}>
+        Search
+      </ButtonComponent>
+    );
+    const buttonElement = getByText("Search");
     expect(buttonElement).toBeInTheDocument();
-    expect(buttonElement).toHaveTextContent(buttonText);
+  });
+
+  test("calls handleSearch prop when button is clicked", () => {
+    const handleSearch = jest.fn();
+    const { getByTestId } = render(
+      <ButtonComponent handleSearch={handleSearch} isButtonDisabled={false}>
+        Search
+      </ButtonComponent>
+    );
+    const buttonElement = getByTestId("button-atom");
     fireEvent.click(buttonElement);
-    expect(mockHandleSearch).toHaveBeenCalled();
+    expect(handleSearch).toHaveBeenCalledTimes(1);
+  });
+
+  test("disables the button if isButtonDisabled prop is true", () => {
+    const handleSearch = jest.fn();
+    const { getByTestId } = render(
+      <ButtonComponent handleSearch={handleSearch} isButtonDisabled={true}>
+        Search
+      </ButtonComponent>
+    );
+    const buttonElement = getByTestId("button-atom");
+    expect(buttonElement).toBeDisabled();
   });
 });

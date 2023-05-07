@@ -1,7 +1,7 @@
 import { Box, Card, Typography, styled } from "@mui/material";
 import React from "react";
-import ImageConstructor from "../../atom/imageConstructor";
 import theme from "../../../theme/theme";
+import ImageConstructor from "../../atom/imageConstrtuctor";
 
 const RootBox = styled(Box)({
   position: "relative",

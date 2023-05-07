@@ -1,27 +1,35 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { useNavigate } from "react-router-dom";
 import DetailsPage from ".";
 
+jest.mock("react-router-dom", () => ({
+  useNavigate: jest.fn(),
+}));
+
 describe("DetailsPage", () => {
-  it("should render the TextBackButton component", () => {
-    render(<DetailsPage />, { wrapper: MemoryRouter });
-    expect(screen.getByTestId("textBackButton")).toBeInTheDocument();
+  beforeEach(() => {
+    (useNavigate as jest.Mock).mockClear();
   });
 
-  it("should render the ArtWorkDetails component", () => {
-    render(<DetailsPage />, { wrapper: MemoryRouter });
-    expect(screen.getByTestId("allArtworkDetais")).toBeInTheDocument();
+  test("displays the back button", () => {
+    render(<DetailsPage />);
+    const backButton = screen.getByRole("button", { name: "Back to list" });
+    expect(backButton).toBeInTheDocument();
   });
 
-  it("should navigate back to the homepage when the handleBackToList function is called", () => {
+  test("clicking the back button navigates to the home page", () => {
     const mockNavigate = jest.fn();
-    jest.mock("react-router-dom", () => ({
-      ...jest.requireActual("react-router-dom"),
-      useNavigate: () => mockNavigate,
-    }));
-    render(<DetailsPage />, { wrapper: MemoryRouter });
-    screen.getByTestId("textBackButton").click();
+    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
+    render(<DetailsPage />);
+    const backButton = screen.getByRole("button", { name: "Back to list" });
+    fireEvent.click(backButton);
     expect(mockNavigate).toHaveBeenCalledWith("/");
+  });
+
+  test("displays the art details", async () => {
+    render(<DetailsPage />);
+    const artDetails = await screen.findByTestId("details-middleData");
+    expect(artDetails).toBeInTheDocument();
   });
 });
