@@ -11,7 +11,7 @@ export interface ImageProps {
 
 const ImageComp: React.FC<ImageProps> = ({ src, alt, onClick }) => {
   return (
-    <Box>
+    <Box sx={{display: "flex"}}>
       <img src={src} alt={alt} onClick={onClick} />
     </Box>
   );

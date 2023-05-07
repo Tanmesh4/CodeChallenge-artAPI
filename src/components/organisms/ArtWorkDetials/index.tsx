@@ -7,58 +7,48 @@ import { useParams } from "react-router-dom";
 
 const TableBox = styled(Box)({
   display: "flex",
-  flexDirection:"column",
-  alignItems:"flex-start",
-  padding:"10px",
-  gap:"10px"
+  flexDirection: "column",
+  alignItems: "flex-start",
+  padding: "10px",
+  gap: "10px",
 });
 
 const ArtWorkDetails = () => {
-
   const { objectNumber } = useParams();
-  console.log("object number: " + objectNumber);
   const [artObjectData, setArtObjectData] = useState<any>();
-
+  const tableData = [
+    { heading: "Title", content: artObjectData?.longTitle },
+    { heading: "Artist", content: artObjectData?.principalOrFirstMaker },
+    { heading: "Object Type", content: artObjectData?.objectTypes },
+    { heading: "Measurements", content: artObjectData?.subTitle },
+    { heading: "Description", content: artObjectData?.plaqueDescriptionEnglish },
+  ];
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://www.rijksmuseum.nl/api/en/collection/${objectNumber}?key=2esrTh6M`,
+          `https://www.rijksmuseum.nl/api/en/collection/${objectNumber}?key=2esrTh6M`
         );
         setArtObjectData(response.data.artObject);
-        console.log("artObjectData", artObjectData);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, []);
+  }, [objectNumber]);
 
   return (
     <>
-    <Box sx={{display: "flex"}} data-testid="allArtworkDetais">
-          <ImageCardDetail
-            objectNumber={objectNumber ? objectNumber : '' }
-            longTitle={artObjectData?.longTitle}
-          />
+      <Box data-testid="allArtworkDetais">
+        <ImageCardDetail
+          objectNumber={objectNumber ? objectNumber : ""}
+          longTitle={artObjectData?.longTitle}
+        />
         <TableBox data-testid="tablebox-list">
-        <TableContent heading={"Title"} content={artObjectData?.longTitle} />
-        <TableContent
-          heading={"Artist"}
-          content={artObjectData?.principalOrFirstMaker}
-        />
-        <TableContent
-          heading={"Object Type"}
-          content={artObjectData?.objectTypes}
-        />
-        <TableContent
-          heading={"Measurements"}
-          content={artObjectData?.subTitle}
-        />
-        <TableContent
-          heading={"Description"}
-          content={artObjectData?.plaqueDescriptionEnglish}
-        />
+          {tableData.map((data, index) => (
+            <TableContent key={index} heading={data.heading} content={data.content} isLast={index === (tableData.length-1)} />
+          ))}
         </TableBox>
       </Box>
     </>

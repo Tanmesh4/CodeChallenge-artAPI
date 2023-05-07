@@ -1,39 +1,50 @@
 import React from "react";
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, useMediaQuery } from "@mui/material";
 import ImageConstructor from "../../atom/imageConstrtuctor";
+import theme from "../../../theme/theme";
 
 interface IImageCardDetail {
   objectNumber: string;
   longTitle: string;
 }
+
 const RootBox = styled(Box)({
-  position: "absolute",
-  left: "0px",
-  right: "0px",
   borderRadius: "8px",
-  maxWidth: "450px",
+  position: "relative",
+  maxWidth: "100%",
+  height: "850px",
+  overflow: "hidden",
+  '& img': {
+    position: "absolute",
+    maxWidth: "100%",
+    height: "850px",
+    objectFit: "cover",
+    top: "0",
+    left: "0",
+  },
 });
 
 const TextBox = styled(Box)({
   position: "absolute",
-  top: "758px",
-  color: "white",
-});
-
-const TextTypo = styled(Typography)({
-  position: "absolute",
   width: "1043px",
-  height: "64px",
   left: "33px",
-  //top: "814px",
+  bottom: "28px",
+  [theme.breakpoints.down("sm")]: {
+    width: "80%",
+    left: "10%",
+  },
 });
 
 const ImageCardDetail = ({ objectNumber, longTitle }: IImageCardDetail) => {
   return (
     <RootBox data-testid="molecule-CardDetail">
-      <ImageConstructor width={1408} height={850} id={objectNumber} />
+      <ImageConstructor width={1408} height={850} id={objectNumber}/>
       <TextBox>
-        <TextTypo variant="h1" children={longTitle} />
+        <Typography
+          variant="h1"
+          color={theme.palette.primary.contrastText}
+          children={longTitle}
+        />
       </TextBox>
     </RootBox>
   );

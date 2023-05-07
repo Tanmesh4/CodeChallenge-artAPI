@@ -14,68 +14,13 @@ const theme = createTheme({
     info: {
       main: "#0FEFFD",
       light: "#636366",
-      dark: "#262626"
+      dark: "#262626",
     },
-    divider:"#CA35F7",
-    
+    divider: "#CA35F7",
   },
 
   typography: {
     fontFamily: "Roboto",
-    caption: {
-      fontSize: "14px",
-      fontWeight: 500,
-      lineHeight: "16px",
-      textTransform: "none",
-    },
-    body1: {
-      fontSize: "24px",
-      fontWeight: 500,
-      lineHeight: "32px",
-      textTransform: "none",
-    },
-    body2: {
-      fontSize: "16px",
-      fontWeight: 400,
-      lineHeight: "22px",
-      textTransform: "none",
-    },
-    h1: {
-      fontSize: "56px",
-      fontWeight: 500,
-      lineHeight: "64px",
-    },
-    h2: {
-      fontSize: "24px",
-      fontWeight: 400,
-      lineHeight: "34px",
-      textTransform: "none",
-    },
-    h3: {
-      fontSize: "32px",
-      fontWeight: 500,
-      lineHeight: "40px",
-    },
-    h4: {
-      fontSize: "18px",
-      fontWeight: 400,
-      lineHeight: "24px",
-    },
-    h5: {
-      fontSize: "18px",
-      fontWeight: 500,
-      lineHeight: "24px",
-    },
-    h6: {
-      fontSize: "16px",
-      fontWeight: 500,
-      lineHeight: "24px",
-    },
-    subtitle1: {
-      fontSize: "16px",
-      fontWeight: 500,
-      lineHeight: "24px",
-    },
     subtitle2: {
       fontSize: "14px",
       fontWeight: 500,
@@ -83,6 +28,98 @@ const theme = createTheme({
       textTransform: "none",
     },
   },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
+
+theme.typography.h3 = {
+  fontSize: "24px",
+  lineHeight: "32px",
+  fontFamily: "Roboto",
+  fontWeight: 500,
+  [theme.breakpoints.up("md")]: {
+    fontSize: "32px",
+    lineHeight: "40px",
+  },
+};
+
+theme.typography.body1 = {
+  fontFamily: "Roboto",
+  fontSize: "18px",
+  fontWeight: 500,
+  lineHeight: "24px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "24px",
+    lineHeight: "32px",
+  },
+};
+
+theme.typography.h1 = {
+  fontFamily: "Roboto",
+  fontSize: "40px",
+  fontWeight: 500,
+  lineHeight: "48px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "56px",
+    lineHeight: "64px",
+  },
+};
+
+theme.typography.h6 = {
+  fontFamily: "Roboto",
+  fontSize: "14px",
+  fontWeight: 500,
+  lineHeight: "24px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "16px",
+    lineHeight: "24px",
+  },
+};
+
+theme.typography.h5 = {
+  fontFamily: "Roboto",
+  fontSize: "16px",
+  fontWeight: 500,
+  lineHeight: "24px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "18px",
+    lineHeight: "24px",
+  },
+};
+
+theme.typography.h4 = {
+  fontFamily: "Roboto",
+  fontSize: "18px",
+  fontWeight: 500,
+  lineHeight: "24px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "24px",
+    lineHeight: "32px",
+  },
+};
+
+theme.typography.subtitle1 = {
+  fontFamily: "Roboto",
+  fontSize: "16px",
+  fontWeight: 500,
+  lineHeight: "24px",
+  textTransform: "none",
+  [theme.breakpoints.up("md")]: {
+    fontWeight: 400,
+  },
+};
 
 export default theme;

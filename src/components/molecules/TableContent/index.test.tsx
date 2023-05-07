@@ -8,7 +8,7 @@ describe("TableContent", () => {
   };
 
   it("renders the component with the provided props", () => {
-    render(<TableContent {...mockProps} />);
+    render(<TableContent isLast={false} {...mockProps} />);
     const headingElement = screen.getByText("Heading");
     const contentElement = screen.getByText("Content");
 
@@ -17,7 +17,7 @@ describe("TableContent", () => {
   });
 
   it("renders the component with correct data-testid", () => {
-    render(<TableContent {...mockProps} />);
+    render(<TableContent isLast={true} {...mockProps} />);
     const tableContentElement = screen.getByTestId("molecule-tableContent");
 
     expect(tableContentElement).toBeInTheDocument();

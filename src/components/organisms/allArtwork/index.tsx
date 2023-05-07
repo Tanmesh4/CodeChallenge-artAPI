@@ -32,7 +32,7 @@ function ArtworkGrid({ artData, handlePageChange }: IArtworkGrid) {
 
   return (
     <>
-      <RootGrid container>
+      <RootGrid container data-tesid="artworkGrid">
         {artData.length > 0 ? (
           artData.map((artObject: any) => (
             <InnerGrid item data-testid="innerGrid" xs={4} key={artObject.id}>
