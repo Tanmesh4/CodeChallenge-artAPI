@@ -1,4 +1,4 @@
-import { Box, Button, Typography, styled } from "@mui/material";
+import {Button, Typography, styled } from "@mui/material";
 import React from "react";
 import ImageComp from "../../atom/Image";
 import BackButtonImage from "../../../images/Chevron-left.svg";

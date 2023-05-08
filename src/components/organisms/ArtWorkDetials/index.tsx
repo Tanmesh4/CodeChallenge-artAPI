@@ -47,6 +47,8 @@ const ArtWorkDetails = () => {
         <ImageCardDetail
           objectNumber={objectNumber ? objectNumber : ""}
           longTitle={artObjectData?.longTitle}
+          width={1408}
+          height={850}
         />
         <TableBox data-testid="tablebox-list">
           {tableData.map((data, index) => (

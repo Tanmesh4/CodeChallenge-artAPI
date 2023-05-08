@@ -45,30 +45,24 @@ const HomePage = () => {
   };
 
   const handleSearchResult = useCallback((event: any) => {
-    console.log("in handle search: ", isButtonDisabled);
-    if(!event.target.value) {
-      console.log("!isButtonDisabled && !event.target.value");
+    if (!event.target.value) {
       setIsButtonDisabled(true);
-    }else if (isButtonDisabled && event.target.value.length > 0) {
-      console.log("isButtonDisabled && event.target.value.length > 0");
+    } else if (isButtonDisabled && event.target.value.length > 0) {
       setIsButtonDisabled(false);
     }
     setSearchValue(event.target.value);
     setSearch(false);
-  }, []);
+  }, [isButtonDisabled]);
 
   const handleOptionSelected = useCallback((event: any, value: any) => {
-    console.log("in option selected: ");
     setSearchValue(value);
-    if(!isButtonDisabled && !value) {
-      console.log("!isButtonDisabled && !value: ");
+    if (!isButtonDisabled && !value) {
       setIsButtonDisabled(true);
-    }else if (isButtonDisabled) {
-      console.log("isButtonDisabled");
+    } else if (isButtonDisabled) {
       setIsButtonDisabled(false);
     }
     setSearch(false);
-  }, []);
+  }, [isButtonDisabled]);
 
   const handleSearch = useCallback(() => {
     setSearch(true);
@@ -89,7 +83,7 @@ const HomePage = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [filteredDataLength, searchValue, artData, isButtonDisabled]);
+  }, [searchValue]);
 
   return (
     <Box>

@@ -1,4 +1,4 @@
-import { Box, Button, styled } from "@mui/material";
+import { Box,styled } from "@mui/material";
 import React from "react";
 import Logotext from "../LogoText";
 import SearchFieldComponent from "../../atom/SearchBar";

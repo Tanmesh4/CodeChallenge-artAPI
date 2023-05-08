@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField, { StandardTextFieldProps } from "@mui/material/TextField";
-import { Autocomplete, Button, styled } from "@mui/material";
+import { Autocomplete, styled } from "@mui/material";
 import theme from "../../../theme/theme";
 
 interface ITextFieldProps extends StandardTextFieldProps {

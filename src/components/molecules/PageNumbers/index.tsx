@@ -1,6 +1,5 @@
-import { Box, Pagination, Stack, styled } from "@mui/material";
+import { Box, Pagination,styled } from "@mui/material";
 import React from "react";
-import theme from "../../../theme/theme";
 
 interface IPageNumbers {
   handlePageChange: any;

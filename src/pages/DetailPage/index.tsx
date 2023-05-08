@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../../components/molecules/NavBar";
 import ArtWorkDetails from "../../components/organisms/ArtWorkDetials";
 import { Box } from "@mui/material";
 import TextBackButton from "../../components/molecules/TextBackButton";

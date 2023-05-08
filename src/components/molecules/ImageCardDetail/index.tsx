@@ -1,11 +1,13 @@
 import React from "react";
-import { Box, Typography, styled, useMediaQuery } from "@mui/material";
+import { Box, Typography, styled} from "@mui/material";
 import ImageConstructor from "../../atom/imageConstrtuctor";
 import theme from "../../../theme/theme";
 
 interface IImageCardDetail {
   objectNumber: string;
   longTitle: string;
+  width: number;
+  height: number;
 }
 
 const RootBox = styled(Box)({
@@ -31,14 +33,14 @@ const TextBox = styled(Box)({
   bottom: "28px",
   [theme.breakpoints.down("md")]: {
     width: "80%",
-    left: "10%",
+    left: "5%",
   },
 });
 
-const ImageCardDetail = ({ objectNumber, longTitle }: IImageCardDetail) => {
+const ImageCardDetail = ({ objectNumber, longTitle, width, height}: IImageCardDetail) => {
   return (
     <RootBox data-testid="molecule-CardDetail">
-      <ImageConstructor width={1408} height={850} id={objectNumber}/>
+      <ImageConstructor width={width} height={height} id={objectNumber}/>
       <TextBox>
         <Typography
           variant="h1"

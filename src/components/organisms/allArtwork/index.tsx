@@ -1,4 +1,4 @@
-import { Grid, Typography, styled } from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import ImageCard from "../../molecules/ImageCard";
 import PageNumbers from "../../molecules/PageNumbers";
 import { useNavigate } from "react-router-dom";
@@ -11,18 +11,20 @@ interface IArtworkGrid {
 
 const RootGrid = styled(Grid)(({ theme }) => ({
   rowGap: "32px",
+  maxWidth: "1408px",
   [theme.breakpoints.down("md")]: {
+    columnGap: "29px",
+  },
+  [theme.breakpoints.down("lg")]: {
+    columnGap: "29px",
+  },
+  [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
+    columnGap: "29px",
   },
 }));
 
 const InnerGrid = styled(Grid)(({ theme }) => ({
-  maxWidth: "450px",
-  width: "100%",
-  [`& .MuiGrid-grid-xs-4`]: {
-    maxWidth: "450px",
-    flexBasis: "450px",
-  },
 }));
 
 

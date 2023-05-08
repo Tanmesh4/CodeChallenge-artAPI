@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { TableRow, ThemeProvider, Typography } from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import theme from "./theme/theme";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";

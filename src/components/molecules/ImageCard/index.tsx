@@ -1,7 +1,17 @@
-import { Box, Card, Typography, styled } from "@mui/material";
+import { Box,Typography, styled } from "@mui/material";
 import React from "react";
 import theme from "../../../theme/theme";
 import ImageConstructor from "../../atom/imageConstrtuctor";
+
+interface IImageCardProps {
+  imageSource?: any;
+  rightTypo: string;
+  leftTypo: string;
+  imageClick: any;
+  width: number;
+  height: number;
+  id: string;
+}
 
 const RootBox = styled(Box)({
   position: "relative",
@@ -25,7 +35,26 @@ const RootBox = styled(Box)({
   },
 });
 
-const ImageBox = styled(Box)({});
+const ImageBox = styled(Box)({
+  '& img': {
+    position: "absolute",
+    maxWidth: "100%",
+    height: "364px",
+    objectFit: "cover",
+    top: "0",
+    left: "0",
+  },
+  [theme.breakpoints.down("sm")]: {
+    '& img': {
+      position: "absolute",
+      maxWidth: "450px",
+      height: "364px",
+      objectFit: "cover",
+      top: "0",
+      left: "0",
+    },
+  },
+});
 
 const RightTypoBox = styled(Box)({
   position: "absolute",
@@ -41,17 +70,12 @@ const LeftBottomTypoBox = styled(Box)({
   bottom: "40px",
   left: "24px",
   width: "346px",
+  [theme.breakpoints.down("md")]: {
+    width: "80%",
+    left: "10%",
+  },
 });
 
-interface IImageCardProps {
-  imageSource?: any;
-  rightTypo: string;
-  leftTypo: string;
-  imageClick: any;
-  width: number;
-  height: number;
-  id: string;
-}
 const ImageCard = ({
   imageClick,
   leftTypo,
