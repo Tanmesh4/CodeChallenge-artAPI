@@ -39,14 +39,6 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
       gap: "5px",
     },
   },
-  [theme.breakpoints.down("sm")]: {
-    "& .MuiPaginationItem-root": {
-      width: "32px",
-      height: "32px",
-      padding: "6px",
-      gap: "3px",
-    },
-  },
 }));
 
 const PageNumbers = ({ handlePageChange }: IPageNumbers) => {

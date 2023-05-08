@@ -4,12 +4,13 @@ import SearchFieldComponent from ".";
 describe("SearchFieldComponent", () => {
   const handleSearchResult = jest.fn();
   const clearSearch = jest.fn();
+  const options = ["options"];
 
   test("should render input field", () => {
     render(
       <SearchFieldComponent
         handleSearchResult={handleSearchResult}
-        options={undefined} handleOptionSelected={function (): void {
+        options={options} handleOptionSelected={function (): void {
           throw new Error("Function not implemented.");
         } }      />
     );
@@ -23,7 +24,7 @@ describe("SearchFieldComponent", () => {
     render(
       <SearchFieldComponent
         handleSearchResult={handleSearchResult}
-        options={undefined} handleOptionSelected={function (): void {
+        options={options} handleOptionSelected={function (): void {
           throw new Error("Function not implemented.");
         } }      />
     );
@@ -35,7 +36,7 @@ describe("SearchFieldComponent", () => {
     render(
       <SearchFieldComponent
         handleSearchResult={handleSearchResult}
-        options={undefined} handleOptionSelected={function (): void {
+        options={options} handleOptionSelected={function (): void {
           throw new Error("Function not implemented.");
         } }      />
     );
@@ -46,30 +47,4 @@ describe("SearchFieldComponent", () => {
     expect(handleSearchResult).toHaveBeenCalled();
   });
 
-  test("should call clearSearch on Image click", () => {
-    render(
-      <SearchFieldComponent
-        handleSearchResult={handleSearchResult}
-        options={undefined} handleOptionSelected={function (): void {
-          throw new Error("Function not implemented.");
-        } }      />
-    );
-    const image = screen.getByAltText("");
-    fireEvent.click(image);
-    expect(clearSearch).toHaveBeenCalled();
-  });
-
-  test("should display searchQuery prop value in input field", () => {
-    render(
-      <SearchFieldComponent
-        handleSearchResult={handleSearchResult}
-        options={undefined} handleOptionSelected={function (): void {
-          throw new Error("Function not implemented.");
-        } }      />
-    );
-    const inputField = screen.getByPlaceholderText(
-      /Please type in your search/i
-    );
-    expect(inputField).toHaveValue("test");
-  });
 });

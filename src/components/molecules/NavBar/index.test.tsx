@@ -5,6 +5,7 @@ describe("Navbar", () => {
   const handleSearchResult = jest.fn();
   const handleSearch = jest.fn();
   const isButtonDisabled = false;
+  const options = ["drawings"];
 
   it("renders logo and search bar", () => {
     const { getByTestId } = render(
@@ -12,7 +13,7 @@ describe("Navbar", () => {
         handleSearchResult={handleSearchResult}
         handleSearch={handleSearch}
         isButtonDisabled={isButtonDisabled}
-        options={undefined} handleOptionSelected={undefined}      />
+        options={options} handleOptionSelected={undefined}      />
     );
     expect(getByTestId("molecule-navbar")).toBeInTheDocument();
     expect(getByTestId("molecule-logotext")).toBeInTheDocument();
@@ -26,7 +27,7 @@ describe("Navbar", () => {
         handleSearchResult={handleSearchResult}
         handleSearch={handleSearch}
         isButtonDisabled={isButtonDisabled}
-        options={undefined} handleOptionSelected={undefined}      />
+        options={options} handleOptionSelected={undefined}      />
     );
     const searchButton = getByTestId("button-atom");
     fireEvent.click(searchButton);

@@ -4,12 +4,13 @@ import BasicTemplate from ".";
 
 describe("BasicTemplate", () => {
   const middleData = <div>Test Middle Data</div>;
+  const options = ["drawings"];
 
   it("renders the middleData correctly", () => {
     const { getByText } = render(
       <BasicTemplate
         middleData={middleData}
-        options={undefined}
+        options={options}
       />
     );
 

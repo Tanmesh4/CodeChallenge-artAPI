@@ -9,9 +9,6 @@ interface ITextBackButton {
 }
 
 const RootButton = styled(Button)({
-  // display: "flex",
-  // alignItems: "center",
-  // justifyContent: "center",
   padding: "0",
   marginBottom: "32px",
   display: "flex"
@@ -23,11 +20,16 @@ const TextBackButton = ({ handleBackToList }: ITextBackButton) => {
       onClick={handleBackToList}
       startIcon={<ImageComp src={BackButtonImage} alt="BackButton" />}
     >
-      {/* <ImageComp src={BackButtonImage} alt="BackButton"/> */}
       <Typography
         variant="h5"
         color={theme.palette.primary.main}
         children="Back to the List"
+        sx = {{
+          ":hover": {
+            color: `${theme.palette.divider}`,
+            opacity: "0.7"
+          }
+        }}
       />
     </RootButton>
   );

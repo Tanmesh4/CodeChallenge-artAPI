@@ -13,18 +13,18 @@ const RootGrid = styled(Grid)(({ theme }) => ({
   rowGap: "32px",
   maxWidth: "1408px",
   [theme.breakpoints.down("md")]: {
-    columnGap: "29px",
+    //columnGap: "29px",
   },
   [theme.breakpoints.down("lg")]: {
     columnGap: "29px",
   },
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
-    columnGap: "29px",
   },
 }));
 
-const InnerGrid = styled(Grid)(({ theme }) => ({
+const InnerGrid = styled(Grid)(() => ({
+  maxWidth: "450px"
 }));
 
 

@@ -8,7 +8,7 @@ describe("TableContent", () => {
   };
 
   it("renders the component with the provided props", () => {
-    render(<TableContent isLast={false} {...mockProps} />);
+    render(<TableContent isLast={true} {...mockProps} />);
     const headingElement = screen.getByText("Heading");
     const contentElement = screen.getByText("Content");
 

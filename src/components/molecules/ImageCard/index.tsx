@@ -44,16 +44,6 @@ const ImageBox = styled(Box)({
     top: "0",
     left: "0",
   },
-  [theme.breakpoints.down("sm")]: {
-    '& img': {
-      position: "absolute",
-      maxWidth: "450px",
-      height: "364px",
-      objectFit: "cover",
-      top: "0",
-      left: "0",
-    },
-  },
 });
 
 const RightTypoBox = styled(Box)({
@@ -73,6 +63,10 @@ const LeftBottomTypoBox = styled(Box)({
   [theme.breakpoints.down("md")]: {
     width: "80%",
     left: "10%",
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: "246px",
+    left: "24px",
   },
 });
 

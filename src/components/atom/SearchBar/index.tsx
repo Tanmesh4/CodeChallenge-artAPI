@@ -29,7 +29,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
     width: "400px",
   },
   [theme.breakpoints.down("sm")]: {
-    width: "350px",
+    width: "250px",
     padding: "2px 16px",
   },
 }));
@@ -60,6 +60,9 @@ const SearchFieldComponent = ({
           width: "100%",
           ".MuiAutocomplete-clearIndicator": {
             color: theme.palette.primary.main,
+          },
+          "& .MuiAutocomplete-option": {
+            color: "red", // change this to the color you want
           },
         }}
       />
