@@ -98,7 +98,7 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
-  }, [searchValue]);
+  }, [searchValue, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
