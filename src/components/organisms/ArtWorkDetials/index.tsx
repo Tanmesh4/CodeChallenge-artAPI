@@ -56,7 +56,7 @@ const ArtWorkDetails = () => {
               key={index}
               heading={data.heading}
               content={data.content}
-              isLast={index === tableData.length - 1}
+              dataislast={index === tableData.length - 1}
             />
           ))}
         </TableBox>
