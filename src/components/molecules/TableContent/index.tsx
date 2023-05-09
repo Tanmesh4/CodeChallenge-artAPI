@@ -13,7 +13,7 @@ const RootBox = styled(Box)(({ dataislast }: { dataislast: any }) => ({
     alignItems:"flex-start",
     padding: "8px 0px 16px",
     gap: "4px",
-    borderBottom: dataislast ? "none" : "1px solid #C4C4C4",
+    borderBottom: dataislast === "true" ? "none" : "1px solid #C4C4C4",
     width: "100%"
   }));
 

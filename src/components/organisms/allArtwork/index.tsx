@@ -11,10 +11,7 @@ interface IArtworkGrid {
 
 const RootGrid = styled(Grid)(({ theme }) => ({
   rowGap: "32px",
-  maxWidth: "1408px",
-  [theme.breakpoints.down("md")]: {
-    //columnGap: "29px",
-  },
+  maxWidth: "100%",
   [theme.breakpoints.down("lg")]: {
     columnGap: "29px",
   },
