@@ -4,7 +4,7 @@ import theme from "../../../theme/theme";
 import ImageConstructor from "../../atom/imageConstrtuctor";
 
 interface IImageCardProps {
-  imageSource?: any;
+  imageSource?: string;
   rightTypo: string;
   leftTypo: string;
   imageClick: any;

@@ -7,14 +7,14 @@ import theme from "../../theme/theme";
 interface IHomePage {
   handleSearchResult: any,
   handleSearch: any,
-  isSearch: any,
-  filteredDataLength: any,
-  searchValue: any,
-  artData: any,
+  isSearch: boolean,
+  filteredDataLength: number,
+  searchValue: string,
+  artData: string[],
   handlePageChange: any,
-  isButtonDisabled: any,
+  isButtonDisabled: boolean,
   handleOptionSelected: any,
-  options: any
+  options: string[]
 
 }
 

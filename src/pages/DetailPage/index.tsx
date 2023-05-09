@@ -5,11 +5,11 @@ import TextBackButton from "../../components/molecules/TextBackButton";
 import { useNavigate } from "react-router-dom";
 import BasicTemplate from "../../components/template";
 
-interface IBasictempalte {
+interface IDetailsPage {
   handleSearchResult: any;
   handleSearch: any;
-  isButtonDisabled: any;
-  options: any;
+  isButtonDisabled: boolean;
+  options: string[];
   handleOptionSelected: any;
 }
 
@@ -19,7 +19,7 @@ const DetailsPage = ({
   isButtonDisabled,
   options,
   handleOptionSelected
-}:IBasictempalte) => {
+}:IDetailsPage) => {
   const navigate = useNavigate();
   return (
     <Box>

@@ -8,8 +8,8 @@ interface INavBarProp {
   handleSearchResult: () => {};
   handleSearch: () => void;
   handleOptionSelected: any;
-  isButtonDisabled: any;
-  options: any;
+  isButtonDisabled: boolean;
+  options: string[];
 }
 
 const RootBox = styled(Box)(({ theme }) => ({

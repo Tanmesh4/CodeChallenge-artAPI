@@ -3,7 +3,7 @@ import React from 'react'
 
 interface ITableContent {
     heading: string,
-    content: any,
+    content: string,
     isLast: boolean
 }
 
