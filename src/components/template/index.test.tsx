@@ -10,8 +10,7 @@ describe("BasicTemplate", () => {
     const { getByText } = render(
       <BasicTemplate
         middleData={middleData}
-        options={options}
-      />
+        options={options} handleSearchResult={undefined} handleSearch={undefined} isButtonDisabled={false} handleOptionSelected={undefined}      />
     );
 
     expect(getByText("Test Middle Data")).toBeInTheDocument();

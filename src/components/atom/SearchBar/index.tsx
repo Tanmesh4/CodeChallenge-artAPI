@@ -5,9 +5,9 @@ import { Autocomplete, styled } from "@mui/material";
 import theme from "../../../theme/theme";
 
 interface ITextFieldProps extends StandardTextFieldProps {
-  handleSearchResult: () => void;
-  handleOptionSelected: (event?: any, value?: any) => void;
-  options: any;
+  handleSearchResult: any;
+  handleOptionSelected: any;
+  options: string[];
 }
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -60,9 +60,6 @@ const SearchFieldComponent = ({
           width: "100%",
           ".MuiAutocomplete-clearIndicator": {
             color: theme.palette.primary.main,
-          },
-          "& .MuiAutocomplete-option": {
-            color: "red", // change this to the color you want
           },
         }}
       />

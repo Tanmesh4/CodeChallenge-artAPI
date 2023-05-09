@@ -4,12 +4,12 @@ import FooterArtApi from "../molecules/FooterArtApi";
 import { Box, styled } from "@mui/material";
 
 interface IBasicTemplate {
-  handleSearchResult?: any;
-  handleSearch?: any;
+  handleSearchResult: any;
+  handleSearch: any;
   middleData: React.ReactNode;
-  isButtonDisabled?: boolean;
-  options?: any;
-  handleOptionSelected?: any;
+  isButtonDisabled: boolean;
+  options: any;
+  handleOptionSelected: any;
 }
 
 const NavBarBox = styled(Box)({

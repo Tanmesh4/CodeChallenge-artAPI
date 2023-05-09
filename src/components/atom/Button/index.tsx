@@ -25,7 +25,7 @@ const StyledButton = styled(MUIButton)({
 
 interface IButtonProps extends ButtonProps {
   children: string;
-  handleSearch: ()=>void;
+  handleSearch: any;
   id?: any;
   isButtonDisabled: boolean;
 }

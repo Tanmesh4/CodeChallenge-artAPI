@@ -5,19 +5,41 @@ import TextBackButton from "../../components/molecules/TextBackButton";
 import { useNavigate } from "react-router-dom";
 import BasicTemplate from "../../components/template";
 
-const DetailsPage = () => {
+interface IBasictempalte {
+  handleSearchResult: any;
+  handleSearch: any;
+  isButtonDisabled: any;
+  options: any;
+  handleOptionSelected: any;
+}
+
+const DetailsPage = ({
+  handleSearchResult,
+  handleSearch,
+  isButtonDisabled,
+  options,
+  handleOptionSelected
+}:IBasictempalte) => {
   const navigate = useNavigate();
   return (
     <Box>
       <BasicTemplate
         middleData={
-        <Box data-testid="details-middleData">
-          <TextBackButton
-            handleBackToList={() => {
-              navigate("/");
-            } } />
-          <ArtWorkDetails />
-        </Box>}/>
+          <Box data-testid="details-middleData">
+            <TextBackButton
+              handleBackToList={() => {
+                navigate("/");
+              }}
+            />
+            <ArtWorkDetails />
+          </Box>
+        }
+        handleSearchResult={handleSearchResult}
+        handleSearch={handleSearch}
+        isButtonDisabled={isButtonDisabled}
+        options={options}
+        handleOptionSelected={handleOptionSelected}
+      />
     </Box>
   );
 };
